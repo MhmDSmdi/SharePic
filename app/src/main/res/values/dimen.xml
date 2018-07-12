@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="xlarge_font">30sp</dimen>
+    <dimen name="title_font">24sp</dimen>
+    <dimen name="norm_font">18sp</dimen>
+    <dimen name="description_font">15sp</dimen>
+    <dimen name="small_font">13sp</dimen>
+
+    <dimen name="xsmall_margin">4dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="norm_margin">12dp</dimen>
+    <dimen name="large_margin">16dp</dimen>
+    <dimen name="xlarge_margin">20dp</dimen>
+
+</resources>
