@@ -3,6 +3,7 @@ package com.bluecode.mhmd.camera_testapp.ui.splash;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 
 import com.bluecode.mhmd.camera_testapp.R;
@@ -12,6 +13,7 @@ import com.bluecode.mhmd.camera_testapp.ui.main.MainActivity;
 public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     SplashMvpPresenter<SplashMvpView> mPresenter;
+    private static final int SPLASH_TIME_OUT = 3000;
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, SplashActivity.class);
@@ -23,6 +25,7 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         mPresenter.onAttach(SplashActivity.this);
+        startTimerService();
     }
 
     @Override
@@ -30,6 +33,16 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
         Intent intent = MainActivity.getStartIntent(SplashActivity.this);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void startTimerService() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                openMainActivity();
+            }
+        }, SPLASH_TIME_OUT);
     }
 
     @Override
