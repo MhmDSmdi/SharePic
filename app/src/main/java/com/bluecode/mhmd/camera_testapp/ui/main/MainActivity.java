@@ -1,6 +1,7 @@
-package com.bluecode.mhmd.camera_testapp;
+package com.bluecode.mhmd.camera_testapp.ui.main;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,6 +14,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.bluecode.mhmd.camera_testapp.R;
+import com.bluecode.mhmd.camera_testapp.ui.splash.SplashActivity;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,6 +42,11 @@ public class MainActivity extends Activity {
 //                dispatchTakePictureIntent();
 //            }
 //        });
+    }
+
+    public static Intent getStartIntent(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
     }
 
     private void dispatchTakePictureIntent() {
