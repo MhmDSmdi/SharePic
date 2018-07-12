@@ -1,4 +1,4 @@
-package com.bluecode.mhmd.cammera_testapp;
+package com.bluecode.mhmd.camera_testapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
