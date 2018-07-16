@@ -2,6 +2,8 @@ package com.bluecode.mhmd.share_pic.ui.base;
 
 import com.bluecode.mhmd.share_pic.data.DataManager;
 
+import javax.inject.Inject;
+
 public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
     private static final String TAG = "BasePresenter";
@@ -9,6 +11,7 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
     private final DataManager mDataManager;
     private V mMvpView;
 
+    @Inject
     public BasePresenter(DataManager dataManager) {
         mDataManager = dataManager;
     }

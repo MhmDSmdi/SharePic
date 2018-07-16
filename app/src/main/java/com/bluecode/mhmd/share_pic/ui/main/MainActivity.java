@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bluecode.mhmd.share_pic.R;
+import com.bluecode.mhmd.share_pic.ui.base.BaseActivity;
 import com.bluecode.mhmd.share_pic.ui.splash.SplashActivity;
 
 import java.io.File;
@@ -23,9 +24,15 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends Activity {
+import javax.inject.Inject;
+
+public class MainActivity extends BaseActivity implements MainMvpView {
 
     static final int REQUEST_TAKE_PHOTO = 1;
+
+    @Inject
+    MainPresenter<MainMvpView> mPresenter;
+
     private String currentPhotoPath;
     private ImageView imageView ;
     private Button btnCapture;
@@ -36,6 +43,9 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 //        imageView = findViewById(R.id.imageView);
         btnCapture = findViewById(R.id.btn_takePhotos);
+
+        getActivityComponent().inject(this);
+
 //        btnCapture.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -98,5 +108,20 @@ public class MainActivity extends Activity {
 
         Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
         imageView.setImageBitmap(bitmap);
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public boolean isPermissionGranted(String permission) {
+        return false;
     }
 }

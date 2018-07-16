@@ -6,8 +6,11 @@ import com.bluecode.mhmd.share_pic.data.db.DbHelper;
 import com.bluecode.mhmd.share_pic.data.db.Model.CardTag;
 import com.bluecode.mhmd.share_pic.data.db.Model.ImageCardHolder;
 import com.bluecode.mhmd.share_pic.data.prefs.PreferencesHelper;
+import com.bluecode.mhmd.share_pic.di.ApplicationContext;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 public class AppDataManager implements DataManager {
 
@@ -16,7 +19,8 @@ public class AppDataManager implements DataManager {
     private final DbHelper mDbHelper;
     private final PreferencesHelper mPreferencesHelper;
 
-    public AppDataManager(Context context, DbHelper dbHelper, PreferencesHelper preferencesHelper) {
+    @Inject
+    public AppDataManager(@ApplicationContext Context context, DbHelper dbHelper, PreferencesHelper preferencesHelper) {
         mContext = context;
         mDbHelper = dbHelper;
         mPreferencesHelper = preferencesHelper;

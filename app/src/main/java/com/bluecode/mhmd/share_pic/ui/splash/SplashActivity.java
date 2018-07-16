@@ -10,9 +10,13 @@ import com.bluecode.mhmd.share_pic.R;
 import com.bluecode.mhmd.share_pic.ui.base.BaseActivity;
 import com.bluecode.mhmd.share_pic.ui.main.MainActivity;
 
+import javax.inject.Inject;
+
 public class SplashActivity extends BaseActivity implements SplashMvpView {
 
+    @Inject
     SplashMvpPresenter<SplashMvpView> mPresenter;
+
     private static final int SPLASH_TIME_OUT = 3000;
 
     public static Intent getStartIntent(Context context) {
@@ -24,7 +28,11 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        getActivityComponent().inject(this);
+
         mPresenter.onAttach(SplashActivity.this);
+
         startTimerService();
     }
 

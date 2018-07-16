@@ -5,7 +5,16 @@ import com.bluecode.mhmd.share_pic.data.db.Model.ImageCardHolder;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
 public class AppDbHelper implements DbHelper {
+
+    @Inject
+    public AppDbHelper() {
+    }
+
     @Override
     public void saveImageCard(ImageCardHolder imageCard) {
         imageCard.save();

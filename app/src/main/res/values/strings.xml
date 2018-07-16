@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SharePic</string>
     <string name="app_desc">Test Application For Training \n ModelViewPresenter \n DesignPattern</string>
+    <string name="some_error">Error</string>
 </resources>
