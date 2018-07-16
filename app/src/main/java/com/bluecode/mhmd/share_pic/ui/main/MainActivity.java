@@ -1,28 +1,20 @@
 package com.bluecode.mhmd.share_pic.ui.main;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 
 import com.bluecode.mhmd.share_pic.R;
+import com.bluecode.mhmd.share_pic.data.db.Model.ImageCardHolder;
 import com.bluecode.mhmd.share_pic.ui.base.BaseActivity;
-import com.bluecode.mhmd.share_pic.ui.splash.SplashActivity;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.bluecode.mhmd.share_pic.ui.createImage.AddImageActivity;
+import com.bluecode.mhmd.share_pic.ui.main.card_recyclerview.ImageCardRecyclerAdapter;
 
 import javax.inject.Inject;
 
@@ -33,25 +25,42 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @Inject
     MainPresenter<MainMvpView> mPresenter;
 
-    private String currentPhotoPath;
-    private ImageView imageView ;
-    private Button btnCapture;
+    @Inject
+    ImageCardRecyclerAdapter mCardAdapter;
+
+    @Inject
+    StaggeredGridLayoutManager gridLayoutManager;
+
+    private RecyclerView recyclerView;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        imageView = findViewById(R.id.imageView);
-        btnCapture = findViewById(R.id.btn_takePhotos);
-
         getActivityComponent().inject(this);
 
-//        btnCapture.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dispatchTakePictureIntent();
-//            }
-//        });
+        recyclerView = findViewById(R.id.recycler_main);
+        fab = findViewById(R.id.fab_main);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickFab();
+            }
+        });
+
+        setUpRecycler();
+        mCardAdapter.addItem(new ImageCardHolder("Title1", "Caption1", "Note", "photoPath"));
+        mCardAdapter.addItem(new ImageCardHolder("Title2", "Captioisfhoisdafhsoidfhsiodfhoisdafhoisadhfoishfoisafhoisdfhosdn1", "Note", "photoPath"));
+        mCardAdapter.addItem(new ImageCardHolder("Title3", "Caption3", "Note", "photoPath"));
+        mCardAdapter.addItem(new ImageCardHolder("Title4", "Caption4", "Note", "photoPath"));
+    }
+
+    public void setUpRecycler() {
+        gridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mCardAdapter);
     }
 
     public static Intent getStartIntent(Context context) {
@@ -59,7 +68,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         return intent;
     }
 
-    private void dispatchTakePictureIntent() {
+    /*private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             File photoFile = null;
@@ -73,25 +82,25 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
-    }
+    }*/
 
-    @Override
+   /* @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
            setImageViewPic();
         }
-    }
+    }*/
 
-    private File createImageFile() throws IOException {
+   /* private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(imageFileName,".jpg", storageDir);
         currentPhotoPath = image.getAbsolutePath();
         return image;
-    }
+    }*/
 
-    private void setImageViewPic() {
+    /*private void setImageViewPic() {
         int targetW = imageView.getWidth();
         int targetH = imageView.getHeight();
 
@@ -108,7 +117,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
         Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
         imageView.setImageBitmap(bitmap);
-    }
+    }*/
 
     @Override
     public void showLoading() {
@@ -123,5 +132,11 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @Override
     public boolean isPermissionGranted(String permission) {
         return false;
+    }
+
+    @Override
+    public void onClickFab() {
+        Intent intent = new Intent(this, AddImageActivity.class);
+        startActivity(intent);
     }
 }

@@ -14,9 +14,9 @@ public class ImageCardHolder extends SugarRecord {
     public ImageCardHolder() {
     }
 
-    public ImageCardHolder(String caption, String tile, String note, String photoPath) {
+    public ImageCardHolder(String title, String caption, String note, String photoPath) {
         this.caption = caption;
-        this.tile = tile;
+        this.tile = title;
         this.note = note;
         this.photoPath = photoPath;
         this.location = location;

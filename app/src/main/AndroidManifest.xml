@@ -15,14 +15,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.bluecode.mhmd.share_pic.ui.splash.SplashActivity">
+        <activity android:name="com.bluecode.mhmd.share_pic.ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.main.MainActivity"/>
+        <activity android:name=".ui.splash.SplashActivity"/>
+        <activity android:name=".ui.createImage.AddImageActivity"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

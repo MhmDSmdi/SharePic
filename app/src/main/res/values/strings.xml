@@ -2,4 +2,7 @@
     <string name="app_name">SharePic</string>
     <string name="app_desc">Test Application For Training \n ModelViewPresenter \n DesignPattern</string>
     <string name="some_error">Error</string>
+    <string name="imageTitle_hint">Title</string>
+    <string name="imageCaption_hint">Caption</string>
+    <string name="imageNote_hint">Note</string>
 </resources>

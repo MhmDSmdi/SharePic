@@ -76,4 +76,44 @@ public class AppDataManager implements DataManager {
     public List<CardTag> getAllTag() {
         return mDbHelper.getAllTag();
     }
+
+    @Override
+    public Long getCurrentUserId() {
+        return mPreferencesHelper.getCurrentUserId();
+    }
+
+    @Override
+    public void setCurrentUserId(Long id) {
+        mPreferencesHelper.setCurrentUserId(id);
+    }
+
+    @Override
+    public String getCurrentUserName() {
+        return mPreferencesHelper.getCurrentUserName();
+    }
+
+    @Override
+    public void setCurrentUserName(String userName) {
+        mPreferencesHelper.setCurrentUserName(userName);
+    }
+
+    @Override
+    public String getCurrentPassword() {
+        return mPreferencesHelper.getCurrentPassword();
+    }
+
+    @Override
+    public void setCurrentPassword(String password) {
+        mPreferencesHelper.setCurrentPassword(password);
+    }
+
+    @Override
+    public String getCurrentUserProfilePicUrl() {
+        return mPreferencesHelper.getCurrentUserProfilePicUrl();
+    }
+
+    @Override
+    public void setCurrentUserProfilePicUrl(String profilePicUrl) {
+        mPreferencesHelper.setCurrentUserProfilePicUrl(profilePicUrl);
+    }
 }

@@ -11,4 +11,5 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
     public MainPresenter(DataManager dataManager) {
         super(dataManager);
     }
+
 }
