@@ -1,6 +1,10 @@
 package com.bluecode.mhmd.share_pic.data;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
+import android.support.v4.content.FileProvider;
 
 import com.bluecode.mhmd.share_pic.data.db.DbHelper;
 import com.bluecode.mhmd.share_pic.data.db.Model.CardTag;
@@ -8,6 +12,10 @@ import com.bluecode.mhmd.share_pic.data.db.Model.ImageCardHolder;
 import com.bluecode.mhmd.share_pic.data.prefs.PreferencesHelper;
 import com.bluecode.mhmd.share_pic.di.ApplicationContext;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -115,5 +123,29 @@ public class AppDataManager implements DataManager {
     @Override
     public void setCurrentUserProfilePicUrl(String profilePicUrl) {
         mPreferencesHelper.setCurrentUserProfilePicUrl(profilePicUrl);
+    }
+
+    @Override
+    public File createImageFile() {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = null;
+        try {
+            image = File.createTempFile(imageFileName,".jpg", storageDir);
+        } catch (IOException e) {
+
+        }
+        return image;
+    }
+
+    @Override
+    public boolean checkIsNull(Intent intent) {
+        return (intent.resolveActivity(mContext.getPackageManager()) != null);
+    }
+
+    @Override
+    public Uri getUriPictureFile(String authority, File photoFile) {
+        return FileProvider.getUriForFile(mContext, authority, photoFile);
     }
 }

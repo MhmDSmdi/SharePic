@@ -16,7 +16,8 @@
                 android:id="@+id/img_holder"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@drawable/ic_launcher_background"/>
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_launcher_background"/>
 
             <TextView
                 android:id="@+id/txt_title"

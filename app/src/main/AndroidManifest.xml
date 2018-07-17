@@ -6,6 +6,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="18"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="18"/>
 
     <application
         android:name=".MvpApp"
@@ -15,6 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data android:name="DATABASE" android:value="share_pic.db" />
+        <meta-data android:name="VERSION" android:value="1" />
+        <meta-data android:name="QUERY_LOG" android:value="true" />
+        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.bluecode.mhmd.share_pic" />
+
         <activity android:name="com.bluecode.mhmd.share_pic.ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +30,7 @@
         </activity>
 
         <activity android:name=".ui.splash.SplashActivity"/>
-        <activity android:name=".ui.createImage.AddImageActivity"/>
+        <activity android:name=".ui.add_image.AddImageActivity"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

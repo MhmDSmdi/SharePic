@@ -2,15 +2,15 @@ package com.bluecode.mhmd.share_pic.di.module;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.bluecode.mhmd.share_pic.data.db.Model.ImageCardHolder;
 import com.bluecode.mhmd.share_pic.di.ActivityContext;
 import com.bluecode.mhmd.share_pic.di.PerActivity;
-import com.bluecode.mhmd.share_pic.ui.createImage.AddImageMvpPresenter;
-import com.bluecode.mhmd.share_pic.ui.createImage.AddImageMvpView;
-import com.bluecode.mhmd.share_pic.ui.createImage.AddImagePresenter;
+import com.bluecode.mhmd.share_pic.ui.add_image.AddImageMvpPresenter;
+import com.bluecode.mhmd.share_pic.ui.add_image.AddImageMvpView;
+import com.bluecode.mhmd.share_pic.ui.add_image.AddImagePresenter;
 import com.bluecode.mhmd.share_pic.ui.main.MainMvpPresenter;
 import com.bluecode.mhmd.share_pic.ui.main.MainMvpView;
 import com.bluecode.mhmd.share_pic.ui.main.MainPresenter;
@@ -27,9 +27,9 @@ import dagger.Provides;
 @Module
 public class ActivityModule {
 
-    private Activity mActivity;
+    private AppCompatActivity mActivity;
 
-    public ActivityModule(Activity activity) {
+    public ActivityModule(AppCompatActivity activity) {
         mActivity = activity;
     }
 

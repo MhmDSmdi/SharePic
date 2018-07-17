@@ -3,6 +3,7 @@ package com.bluecode.mhmd.share_pic.ui.main.card_recyclerview;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -53,6 +54,10 @@ public class ImageCardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolde
         notifyDataSetChanged();
     }
 
+    public void setItemList(List<ImageCardHolder> imageCardHolderList) {
+        this.imageCardHolderList = imageCardHolderList;
+    }
+
     public class ViewHolder extends BaseViewHolder {
 
         ImageView imageView;
@@ -78,14 +83,10 @@ public class ImageCardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolde
             txtCaption.setText(imageCardHolder.getCaption());
             txtTitle.setText(imageCardHolder.getTile());
 
-            //SetImageFromPath
-            File imgFile = new  File(imageCardHolder.getPhotoPath());
-            if(imgFile.exists()){
-                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                imageView.setImageBitmap(myBitmap);
-            } else {
-
-            }
+            Uri uri = Uri.parse(imageCardHolder.getPhotoPath());
+            Glide.with(itemView.getContext())
+                    .load(uri)
+                    .into(imageView);
         }
     }
 }

@@ -5,4 +5,5 @@
     <string name="imageTitle_hint">Title</string>
     <string name="imageCaption_hint">Caption</string>
     <string name="imageNote_hint">Note</string>
+    <string name="btn_save">Save</string>
 </resources>
