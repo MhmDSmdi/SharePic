@@ -3,6 +3,7 @@ package com.bluecode.mhmd.share_pic.di.component;
 import com.bluecode.mhmd.share_pic.di.PerActivity;
 import com.bluecode.mhmd.share_pic.di.module.ActivityModule;
 import com.bluecode.mhmd.share_pic.ui.add_image.AddImageActivity;
+import com.bluecode.mhmd.share_pic.ui.details.DetailsActivity;
 import com.bluecode.mhmd.share_pic.ui.main.MainActivity;
 import com.bluecode.mhmd.share_pic.ui.splash.SplashActivity;
 
@@ -17,5 +18,7 @@ public interface ActivityComponent {
     void inject(SplashActivity activity);
 
     void inject(AddImageActivity activity);
+
+    void inject(DetailsActivity activity);
 
 }

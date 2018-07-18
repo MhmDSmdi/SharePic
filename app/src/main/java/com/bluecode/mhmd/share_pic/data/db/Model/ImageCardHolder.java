@@ -37,7 +37,7 @@ public class ImageCardHolder extends SugarRecord {
         this.photoPath = photoPath;
     }
 
-    public String getTile() {
+    public String getTitle() {
         return tile;
     }
 

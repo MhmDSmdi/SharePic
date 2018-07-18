@@ -1,6 +1,7 @@
 package com.bluecode.mhmd.share_pic.ui.main.card_recyclerview;
 
-import android.net.Uri;
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.bluecode.mhmd.share_pic.R;
 import com.bluecode.mhmd.share_pic.data.db.Model.ImageCardHolder;
 import com.bluecode.mhmd.share_pic.ui.base.BaseViewHolder;
+import com.bluecode.mhmd.share_pic.ui.details.DetailsActivity;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -19,6 +21,12 @@ import java.util.List;
 public class ImageCardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private List<ImageCardHolder> imageCardHolderList;
+
+    public static final String TITLE_EXTRA_INTENT = "title";
+    public static final String CAPTION_EXTRA_INTENT = "caption";
+    public static final String NOTE_EXTRA_INTENT = "note";
+    public static final String IMAGE_PATH_EXTRA_INTENT = "imagePath";
+
 
     public ImageCardRecyclerAdapter(List<ImageCardHolder> imageCardHolderList) {
         this.imageCardHolderList = imageCardHolderList;
@@ -77,19 +85,23 @@ public class ImageCardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolde
             super.onBind(position);
             final ImageCardHolder imageCardHolder = imageCardHolderList.get(position);
             txtCaption.setText(imageCardHolder.getCaption());
-            txtTitle.setText(imageCardHolder.getTile());
-
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                    Toast.makeText(itemView.getContext(), uri.getPath(), Toast.LENGTH_LONG).show();
-                }
-            });
+            txtTitle.setText(imageCardHolder.getTitle());
 
             Glide.with(itemView.getContext())
                 .load(imageCardHolder.getPhotoPath())
                 .into(imageView);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(itemView.getContext(), DetailsActivity.class);
+                    intent.putExtra(TITLE_EXTRA_INTENT, imageCardHolder.getTitle());
+                    intent.putExtra(CAPTION_EXTRA_INTENT, imageCardHolder.getCaption());
+                    intent.putExtra(NOTE_EXTRA_INTENT, imageCardHolder.getNote());
+                    intent.putExtra(IMAGE_PATH_EXTRA_INTENT, imageCardHolder.getPhotoPath());
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }

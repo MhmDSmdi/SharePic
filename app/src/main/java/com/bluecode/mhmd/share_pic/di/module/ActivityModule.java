@@ -11,6 +11,8 @@ import com.bluecode.mhmd.share_pic.di.PerActivity;
 import com.bluecode.mhmd.share_pic.ui.add_image.AddImageMvpPresenter;
 import com.bluecode.mhmd.share_pic.ui.add_image.AddImageMvpView;
 import com.bluecode.mhmd.share_pic.ui.add_image.AddImagePresenter;
+import com.bluecode.mhmd.share_pic.ui.details.DetailsMvpPresenter;
+import com.bluecode.mhmd.share_pic.ui.details.DetailsMvpView;
 import com.bluecode.mhmd.share_pic.ui.main.MainMvpPresenter;
 import com.bluecode.mhmd.share_pic.ui.main.MainMvpView;
 import com.bluecode.mhmd.share_pic.ui.main.MainPresenter;
@@ -59,6 +61,12 @@ public class ActivityModule {
     @Provides
     @PerActivity
     AddImageMvpPresenter<AddImageMvpView> provideAddImagePresenter(AddImagePresenter<AddImageMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    DetailsMvpPresenter<DetailsMvpView> provideDetailsPresenter(DetailsMvpPresenter<DetailsMvpView> presenter) {
         return presenter;
     }
 

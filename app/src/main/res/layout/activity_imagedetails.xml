@@ -1,6 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    style="@style/Widget.Design.CoordinatorLayout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar_imageDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar_imageDetails"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:contentScrim="@color/colorPrimaryDark"
+            app:expandedTitleMarginStart="48dp"
+            app:expandedTitleMarginEnd="64dp"
+            android:fitsSystemWindows="true">
+
+            <ImageView
+                android:id="@+id/img_imageDetails_holder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax"
+                android:alpha="0.8"
+                android:src="@drawable/placeholder"
+                android:layout_gravity="center"/>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_imageDetails"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                app:layout_collapseMode="pin">
+
+                <RelativeLayout
+                    android:id="@+id/layout_imageDetails_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txt_imageDetails_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:background="@color/colorContainer"
+                        android:padding="10dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/colorWhite"
+                        android:text="TITLE"
+                        android:scrollbars="horizontal"
+                        android:lines="1"
+                        android:alpha="0.8"
+                        android:layout_marginLeft="4dp"/>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:id="@+id/txt_imageDetails_caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/textfield_border_drawable"
+                android:gravity="left|top"
+                android:text="CAPTION"
+                android:scrollbars="vertical"
+                android:layout_marginHorizontal="16dp"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/txt_imageDetails_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:background="@drawable/textfield_border_drawable"
+                android:gravity="left|top"
+                android:text="NOTE"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_imageDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_details_edit"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_gravity="right|bottom"/>
+
+</android.support.design.widget.CoordinatorLayout>
+
+

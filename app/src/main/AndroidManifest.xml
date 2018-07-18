@@ -31,6 +31,7 @@
 
         <activity android:name=".ui.splash.SplashActivity"/>
         <activity android:name=".ui.add_image.AddImageActivity"/>
+        <activity android:name=".ui.details.DetailsActivity"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
