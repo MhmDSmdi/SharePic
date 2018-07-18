@@ -57,6 +57,7 @@ public class AddImagePresenter<V extends AddImageMvpView> extends BasePresenter<
         if (getmDataManager().checkIsNull(takePictureIntent)) {
             File photoFile = null;
             photoFile = getmDataManager().createImageFile();
+            currentPhotoPath = photoFile.getPath();
             if (photoFile != null) {
                 Uri photoURI = getmDataManager().getUriPictureFile("com.example.android.fileprovider", photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
@@ -65,4 +66,27 @@ public class AddImagePresenter<V extends AddImageMvpView> extends BasePresenter<
         return takePictureIntent;
     }
 
+    @Override
+    public Bitmap setImageViewPic() {
+        int targetW = 50;
+        int targetH = 50;
+
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+        bmOptions.inPurgeable = true;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
+        return bitmap;
+    }
+
+    public String getCurrentPhotoPath() {
+        return currentPhotoPath;
+    }
 }

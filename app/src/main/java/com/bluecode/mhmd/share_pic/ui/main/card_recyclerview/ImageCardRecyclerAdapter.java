@@ -1,8 +1,5 @@
 package com.bluecode.mhmd.share_pic.ui.main.card_recyclerview;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -17,7 +14,6 @@ import com.bluecode.mhmd.share_pic.data.db.Model.ImageCardHolder;
 import com.bluecode.mhmd.share_pic.ui.base.BaseViewHolder;
 import com.bumptech.glide.Glide;
 
-import java.io.File;
 import java.util.List;
 
 public class ImageCardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
@@ -83,10 +79,17 @@ public class ImageCardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolde
             txtCaption.setText(imageCardHolder.getCaption());
             txtTitle.setText(imageCardHolder.getTile());
 
-            Uri uri = Uri.parse(imageCardHolder.getPhotoPath());
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    Toast.makeText(itemView.getContext(), uri.getPath(), Toast.LENGTH_LONG).show();
+                }
+            });
+
             Glide.with(itemView.getContext())
-                    .load(uri)
-                    .into(imageView);
+                .load(imageCardHolder.getPhotoPath())
+                .into(imageView);
+
         }
     }
 }

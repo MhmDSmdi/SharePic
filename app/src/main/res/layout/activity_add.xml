@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
     android:id="@+id/view"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
+    style="@style/Widget.Design.CoordinatorLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <!--<android.support.design.widget.AppBarLayout
+    <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,101 +17,124 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbar_add"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll"
-            app:contentScrim="@color/colorPrimary"
+            android:layout_height="300dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:contentScrim="@color/colorPrimaryDark"
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp"
             android:fitsSystemWindows="true">
 
-           //ImageView
+            <ImageView
+                android:id="@+id/img_add_holder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax"
+                android:alpha="0.8"
+                android:src="@drawable/placeholder"
+                android:layout_gravity="center"/>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar_add"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_collapseMode="pin"/>
+                android:layout_height="70dp"
+                app:layout_collapseMode="pin">
+
+                <RelativeLayout
+                    android:id="@+id/layout_add_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/editTxt_add_title"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/imageTitle_hint"
+                        android:theme="@style/Theme.App.EditText"
+                        android:textSize="15sp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/edittext_drawable"
+                        android:textColor="@color/colorWhite"
+                        android:scrollbars="horizontal"
+                        android:textColorHint="@color/colorWhite"
+                        android:lines="1"
+                        android:alpha="0.8"
+                        android:layout_marginLeft="4dp"/>
+
+                    <Button
+                        android:id="@+id/btn_add_save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_save"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:textSize="12sp"
+                        android:background="@drawable/square_flat_button"
+                        android:textColor="@color/colorWhite" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.Toolbar>
+
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
--->
-   <!-- <android.support.v4.widget.NestedScrollView
+
+    <android.support.v4.widget.NestedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:orientation="vertical">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp">
 
-    <ImageView
-        android:id="@+id/img_add_holder"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:fitsSystemWindows="true"
-        app:layout_collapseMode="parallax"
-        android:src="@color/colorPrimary"
-        android:layout_gravity="center"
-        android:layout_marginVertical="16dp"/>
+                <EditText
+                    android:id="@+id/editTxt_add_caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:hint="@string/imageCaption_hint"
+                    android:background="@drawable/edittext_drawable"
+                    android:inputType="textMultiLine"
+                    android:gravity="left|top"
+                    android:scrollbars="vertical"
+                    android:layout_marginHorizontal="16dp"
+                    android:textSize="20sp"/>
 
-    <EditText
-        android:id="@+id/editTxt_add_title"
-        android:layout_width="180dp"
+                <EditText
+                    android:id="@+id/editTxt_add_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:scrollbars="vertical"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/edittext_drawable"
+                    android:gravity="left|top"
+                    android:hint="@string/imageNote_hint"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:textSize="18sp"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/imageTitle_hint"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="24sp"/>
+        android:src="@drawable/ic_add_picture"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_gravity="right|bottom"/>
 
-    <EditText
-        android:id="@+id/editTxt_add_caption"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/imageCaption_hint"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        android:textSize="20sp"/>
-
-    <EditText
-        android:id="@+id/editTxt_add_note"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        android:inputType="textMultiLine"
-        android:gravity="left|top"
-        android:hint="@string/imageNote_hint"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        android:textSize="18sp"/>
-
-    <Button
-        android:id="@+id/btn_add_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_save"
-        android:textSize="@dimen/norm_font"
-        android:background="@drawable/square_flat_button"
-        android:textColor="@color/colorAccent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginVertical="8dp"/>
-
-
-        <!--</LinearLayout>-->
-
-    <!--</android.support.v4.widget.NestedScrollView>-->
-
-   <!-- <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_edit"
-        app:layout_anchor="@id/appBar_add"
-        app:layout_anchorGravity="bottom|right|end"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content" />-->
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
 
 

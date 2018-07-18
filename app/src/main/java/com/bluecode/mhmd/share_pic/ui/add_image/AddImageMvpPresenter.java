@@ -18,4 +18,6 @@ public interface AddImageMvpPresenter<V extends AddImageMvpView> extends MvpPres
 
     Intent getCameraIntent();
 
+    Bitmap setImageViewPic();
+
 }
