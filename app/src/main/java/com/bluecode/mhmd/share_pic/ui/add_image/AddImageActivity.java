@@ -1,17 +1,16 @@
 package com.bluecode.mhmd.share_pic.ui.add_image;
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,7 +20,6 @@ import com.bluecode.mhmd.share_pic.R;
 import com.bluecode.mhmd.share_pic.data.db.Model.ImageCardHolder;
 import com.bluecode.mhmd.share_pic.ui.add_image.bottomSheet.BottomSheetDialog;
 import com.bluecode.mhmd.share_pic.ui.base.BaseActivity;
-import com.bluecode.mhmd.share_pic.utils.FileUtils;
 import com.bumptech.glide.Glide;
 
 import javax.inject.Inject;
@@ -85,7 +83,6 @@ public class AddImageActivity extends BaseActivity implements AddImageMvpView, B
             int mode = 1;
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                Log.e("off", "" + appBarLayout.getTotalScrollRange() + " ----------  " + verticalOffset );
                 if (verticalOffset <  - 3 * appBarLayout.getTotalScrollRange() / 4 && mode == 1) {
                     setVisibleToolbar();
                     mode = 0;
@@ -120,7 +117,8 @@ public class AddImageActivity extends BaseActivity implements AddImageMvpView, B
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == AddImagePresenter.PICK_IMAGE && resultCode == RESULT_OK && data != null) {
-            currentImageUri = FileUtils.getRealPathFromURI(this, data.getData());
+            currentImageUri = /*FileUtils.*/getRealPathFromURI(this, data.getData());
+            showMessage(currentImageUri);
             Glide.with(getApplicationContext())
                     .load(data.getData())
                     .into(imageView_holder);
@@ -128,6 +126,7 @@ public class AddImageActivity extends BaseActivity implements AddImageMvpView, B
 
         else if (requestCode == AddImagePresenter.REQUEST_TAKE_PHOTO && resultCode == RESULT_OK ) {
             currentImageUri = mPresenter.getCurrentPhotoPath();
+            showMessage(currentImageUri);
             Glide.with(getApplicationContext())
                     .load(currentImageUri)
                     .into(imageView_holder);
@@ -135,7 +134,22 @@ public class AddImageActivity extends BaseActivity implements AddImageMvpView, B
     }
 
 
-
+    public static String getRealPathFromURI(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } catch (Exception e) {
+            return "";
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
     @Override
     public void showLoading() {
 

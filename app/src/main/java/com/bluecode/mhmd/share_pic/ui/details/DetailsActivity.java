@@ -37,8 +37,9 @@ public class DetailsActivity extends BaseActivity implements DetailsMvpView {
         txtTitle.setText(getIntent().getStringExtra(ImageCardRecyclerAdapter.TITLE_EXTRA_INTENT));
         txtCaption.setText(getIntent().getStringExtra(ImageCardRecyclerAdapter.CAPTION_EXTRA_INTENT));
         txtNote.setText(getIntent().getStringExtra(ImageCardRecyclerAdapter.NOTE_EXTRA_INTENT));
+
         Glide.with(this)
-                .load(getIntent().getStringExtra(ImageCardRecyclerAdapter.CAPTION_EXTRA_INTENT))
+                .load(getIntent().getStringExtra(ImageCardRecyclerAdapter.IMAGE_PATH_EXTRA_INTENT))
                 .into(imageView);
 
     }

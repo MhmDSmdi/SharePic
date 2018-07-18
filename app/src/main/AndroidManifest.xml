@@ -22,14 +22,14 @@
         <meta-data android:name="QUERY_LOG" android:value="true" />
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.bluecode.mhmd.share_pic" />
 
-        <activity android:name="com.bluecode.mhmd.share_pic.ui.main.MainActivity">
+        <activity android:name="com.bluecode.mhmd.share_pic.ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.splash.SplashActivity"/>
+        <activity android:name=".ui.main.MainActivity"/>
         <activity android:name=".ui.add_image.AddImageActivity"/>
         <activity android:name=".ui.details.DetailsActivity"/>
 
